@@ -22,10 +22,11 @@ API for cars management
 
 # Technologies
 * python 3
-* flask 2.1.3
+* flask
+* MySQL
 * flask_restx
 * flask_sqlalchemy
-* MySQL
+* flask_jwt_extended
 
 # Setup
 
