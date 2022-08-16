@@ -1,12 +1,19 @@
+"""
+    Module for cars routs
+"""
+
 from http import HTTPStatus
 
 from flask import request
 from flask_restx import Namespace, Resource, fields
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from ..models.cars import Car
+from ..models.users import User
 from ..utils.db import db
 
-cars_namespace = Namespace('/', description="Namespace for cars")
+
+cars_namespace = Namespace('api/avto', description="Namespace for cars")
 
 car_model = cars_namespace.model(
     'Car', {
@@ -18,40 +25,50 @@ car_model = cars_namespace.model(
 )
 
 
-@cars_namespace.route('/api/cars')
+@cars_namespace.route('/cars')
 class CarsGetPost(Resource):
     @cars_namespace.marshal_with(car_model)
+    @jwt_required()
     def get(self):
         """
             Get all cars
         """
 
-        cars = Car.query.order_by(Car.brand).all()
+        cars = Car.query.all()
         return cars, HTTPStatus.OK
 
+    @cars_namespace.expect(car_model)
     @cars_namespace.marshal_with(car_model)
+    @jwt_required()
     def post(self):
         """
             Create new car
         """
 
-        data = request.get_json()
-        print(data)
+        username = get_jwt_identity()
+
+        current_user = User.query.filter_by(username=username).first()
+
+        data = cars_namespace.payload
+
         new_car = Car(
-            brand=data.get('brand'),
-            model=data.get('model'),
-            is_vintage=data.get('is_vintage')
+            brand=data['brand'],
+            model=data['model'],
+            is_vintage=data['is_vintage']
         )
+
+        new_car.user = current_user
 
         new_car.save()
 
         return new_car, HTTPStatus.CREATED
 
 
-@cars_namespace.route('/api/cars/<int:car_id>')
+@cars_namespace.route('/cars/<int:car_id>')
 class CarGetPutDelete(Resource):
     @cars_namespace.marshal_with(car_model)
-    def get(self, car_id):
+    @jwt_required()
+    def get(self, car_id: int):
         """
             Get car by car_id
         """
@@ -60,7 +77,10 @@ class CarGetPutDelete(Resource):
 
         return car, HTTPStatus.OK
 
-    def put(self, car_id):
+    @cars_namespace.expect(car_model)
+    @cars_namespace.marshal_with(car_model)
+    @jwt_required()
+    def put(self, car_id: int):
         """
             Update by car_id
         """
@@ -77,7 +97,8 @@ class CarGetPutDelete(Resource):
         return car, HTTPStatus.OK
 
     @cars_namespace.marshal_with(car_model)
-    def delete(self, car_id):
+    @jwt_required()
+    def delete(self, car_id: int):
         """
             Delete by car_id
         """
@@ -86,3 +107,19 @@ class CarGetPutDelete(Resource):
         car.delete()
 
         return car, HTTPStatus.NO_CONTENT
+
+
+@cars_namespace.route('/cars/user/<int:user_id>')
+class CarGetByUser(Resource):
+    @cars_namespace.marshal_with(car_model)
+    @jwt_required()
+    def get(self, user_id: int):
+        """
+            Get car by user
+        """
+
+        user = User.get_by_id(user_id)
+
+        cars = user.cars
+
+        return cars, HTTPStatus.OK

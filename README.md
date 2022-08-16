@@ -7,13 +7,17 @@ API for cars management
 ![](static/images/API.png)
 
 # Routes to implement
-| METHOD   | ROUTE                    | FUNCTIONALITY       |
-|----------|--------------------------|---------------------|
-| *GET*    | ```/api/cars```          | details of all cars |
-| *POST*   | ```/api/cars```          | create a car        |
-| *GET*    | ```/api/cars/{car_id}``` | details of car      |
-| *PUT*    | ```/api/cars/{car_id}``` | update a car        |
-| *DELETE* | ```/api/cars/{car_id}``` | delete a car        |
+| METHOD   | ROUTE                               | FUNCTIONALITY          |
+|----------|-------------------------------------|------------------------|
+| *POST*   | ```/api/auth/signup```              | register new user      |
+| *POST*   | ```/api/auth/login```               | login user             |
+| *GET*    | ```/api/avto/cars```                | details of all cars    |
+| *POST*   | ```/api/avto/cars```                | create a car           |
+| *GET*    | ```/api/avto/cars/{car_id}```       | details of car         |
+| *PUT*    | ```/api/avto/cars/{car_id}```       | update a car           |
+| *DELETE* | ```/api/avto/cars/{car_id}```       | delete a car           |
+| *GET*    | ```/api/avto/cars/user/{user_id}``` | get users car          |
+| *GET*    | ```/api/docs/```                    | view API documentation |
 
 
 # Technologies
