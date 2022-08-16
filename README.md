@@ -27,13 +27,13 @@ API for cars management
 
 Clone the project Repository
 ```
-git clone 
+git clone https://github.com/SergiiPachkovskyi/Avto_net
 
 ```
 
 Enter the project folder and create a virtual environment
 ``` 
-$ cd https://github.com/jod35/Build-And-Deploy-A-REST-API-With-Flask 
+$ cd https://github.com/SergiiPachkovskyi/Avto_net 
 
 $ python -m venv venv 
 
@@ -41,7 +41,7 @@ $ python -m venv venv
 
 Activate the virtual environment
 ``` 
-$ source env/bin/actvate #On linux Or Unix
+$ source env/bin/activate #On linux Or Unix
 
 $ source env/Scripts/activate #On Windows  
 ```
