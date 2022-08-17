@@ -108,6 +108,10 @@ class Refresh(Resource):
 
     @jwt_required(refresh=True)
     def post(self):
+        """
+            Refresh a JWT
+        """
+
         username = get_jwt_identity()
 
         access_token = create_access_token(identity=username)

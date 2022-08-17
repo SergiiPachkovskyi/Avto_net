@@ -27,11 +27,15 @@ car_model = cars_namespace.model(
 
 @cars_namespace.route('/cars')
 class CarsGetPost(Resource):
+
     @cars_namespace.marshal_with(car_model)
+    @cars_namespace.doc(
+        description="Retrieve all cars"
+    )
     @jwt_required()
     def get(self):
         """
-            Get all cars
+            Retrieve all cars
         """
 
         cars = Car.query.all()
@@ -39,6 +43,9 @@ class CarsGetPost(Resource):
 
     @cars_namespace.expect(car_model)
     @cars_namespace.marshal_with(car_model)
+    @cars_namespace.doc(
+        description="Create a cars"
+    )
     @jwt_required()
     def post(self):
         """
@@ -66,11 +73,18 @@ class CarsGetPost(Resource):
 
 @cars_namespace.route('/cars/<int:car_id>')
 class CarGetPutDelete(Resource):
+
     @cars_namespace.marshal_with(car_model)
+    @cars_namespace.doc(
+        description="Retrieve a car by ID",
+        params={
+            "car_id": "An ID for a given car"
+        }
+    )
     @jwt_required()
     def get(self, car_id: int):
         """
-            Get car by car_id
+            Retrieve a car by ID
         """
 
         car = Car.get_by_id(car_id)
@@ -79,10 +93,16 @@ class CarGetPutDelete(Resource):
 
     @cars_namespace.expect(car_model)
     @cars_namespace.marshal_with(car_model)
+    @cars_namespace.doc(
+        description="Update a car by ID",
+        params={
+            "car_id": "An ID for a given car"
+        }
+    )
     @jwt_required()
     def put(self, car_id: int):
         """
-            Update by car_id
+            Update a car by ID
         """
 
         data = cars_namespace.payload
@@ -97,10 +117,16 @@ class CarGetPutDelete(Resource):
         return car, HTTPStatus.OK
 
     @cars_namespace.marshal_with(car_model)
+    @cars_namespace.doc(
+        description="Delete a car by ID",
+        params={
+            "car_id": "An ID for a given car"
+        }
+    )
     @jwt_required()
     def delete(self, car_id: int):
         """
-            Delete by car_id
+            Delete a car by ID
         """
 
         car = Car.get_by_id(car_id)
@@ -111,7 +137,14 @@ class CarGetPutDelete(Resource):
 
 @cars_namespace.route('/cars/user/<int:user_id>')
 class CarGetByUser(Resource):
+
     @cars_namespace.marshal_with(car_model)
+    @cars_namespace.doc(
+        description="Get car by user",
+        params={
+            "user_id": "An user`s ID for a given user"
+        }
+    )
     @jwt_required()
     def get(self, user_id: int):
         """

@@ -27,6 +27,7 @@ API for cars management
 * flask_restx
 * flask_sqlalchemy
 * flask_jwt_extended
+* unittest
 
 # Setup
 
