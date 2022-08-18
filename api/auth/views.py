@@ -56,20 +56,20 @@ class SignUp(Resource):
 
         data = request.get_json()
 
-        try:
+        # try:
 
-            new_user = User(
-                username=data.get('username'),
-                email=data.get('email'),
-                password_hash=generate_password_hash(data.get('password'))
-            )
+        new_user = User(
+            username=data.get('username'),
+            email=data.get('email'),
+            password_hash=generate_password_hash(data.get('password'))
+        )
 
-            new_user.save()
+        new_user.save()
 
-            return new_user, HTTPStatus.CREATED
+        return new_user, HTTPStatus.CREATED
 
-        except Exception as e:
-            raise Conflict(f"User with email {data.get('email')} exists")
+        # except Exception as e:
+        #     raise Conflict(f"User with email {data.get('email')} exists")
 
 
 @auth_namespace.route('/login')
