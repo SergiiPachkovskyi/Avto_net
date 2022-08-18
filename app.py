@@ -62,5 +62,5 @@ def create_app(config=config_dict['dev']):
 
 
 if __name__ == '__main__':
-    app = create_app(config_dict['production'])
+    app = create_app(config_dict['prod'])
     app.run()
