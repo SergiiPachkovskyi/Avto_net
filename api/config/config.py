@@ -19,7 +19,7 @@ class DevConfig(Config):
     SQLALCHEMY_ECHO = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # SQLALCHEMY_DATABASE_URI = 'mysql://root:Saint32366n!@localhost/avto_net'
-    SQLALCHEMY_DATABASE_URI = 'postgresql://saintdaemon:saint32366n!@localhost/avto_net'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://saintdaemon:saint32366n@localhost/avto_net'
     DEBUG = config('DEBUG', cast=bool)
 
 
@@ -33,7 +33,7 @@ class TestConfig(Config):
 class ProdConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # SQLALCHEMY_DATABASE_URI = uri
-    SQLALCHEMY_DATABASE_URI = 'postgresql://saintdaemon:saint32366n!@localhost/avto_net'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://saintdaemon:saint32366n@localhost/avto_net'
     DEBUG = config('DEBUG', cast=bool)
 
 
