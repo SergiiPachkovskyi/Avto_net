@@ -17,7 +17,7 @@ auth_namespace = Namespace('api/auth', description="Namespace for authentication
 
 signup_model = auth_namespace.model(
     'SignUp', {
-        'id': fields.Integer(),
+        # 'id': fields.Integer(),
         'username': fields.String(required=True, description="A username"),
         'email': fields.String(required=True, description="An email"),
         'password': fields.String(required=True, description="A password"),
