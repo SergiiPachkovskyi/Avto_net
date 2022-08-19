@@ -17,7 +17,7 @@ cars_namespace = Namespace('api/avto', description="Namespace for cars")
 
 car_model = cars_namespace.model(
     'Car', {
-        'id': fields.Integer(description='ID'),
+        # 'id': fields.Integer(description='ID'),
         'brand': fields.String(required=True, description='brand'),
         'model': fields.String(required=True, description='model'),
         'is_vintage': fields.Boolean(required=True, description='is_vintage')

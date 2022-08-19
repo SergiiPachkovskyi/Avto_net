@@ -17,7 +17,6 @@ API for cars management
 | *PUT*    | ```/api/avto/cars/{car_id}```       | update a car           |
 | *DELETE* | ```/api/avto/cars/{car_id}```       | delete a car           |
 | *GET*    | ```/api/avto/cars/user/{user_id}``` | get users car          |
-| *GET*    | ```/api/docs/```                    | view API documentation |
 
 
 # Technologies
