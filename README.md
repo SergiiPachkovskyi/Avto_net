@@ -22,7 +22,7 @@ API for cars management
 # Technologies
 * python 3
 * flask
-* MySQL
+* PostgreSQL
 * flask_restx
 * flask_sqlalchemy
 * flask_jwt_extended
@@ -46,9 +46,9 @@ $ python -m venv venv
 
 Activate the virtual environment
 ``` 
-$ source env/bin/activate #On linux Or Unix
+$ source venv/bin/activate #On linux Or Unix
 
-$ source env/Scripts/activate #On Windows  
+$ source venv/Scripts/activate #On Windows  
 ```
 
 Install all requirements
